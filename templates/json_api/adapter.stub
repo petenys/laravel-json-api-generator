@@ -1,6 +1,5 @@
 <?php
-
-namespace $NAMESPACE_JSON_API$\$MODEL_NAME_PLURAL$;
+namespace $JSON_API_MODEL_NAMESPACE$;
 
 use $NAMESPACE_MODEL$\$MODEL_NAME$ as Model;
 use App\JsonApi\EloquentAdapter;

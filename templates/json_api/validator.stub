@@ -1,6 +1,6 @@
 <?php
 
-namespace $NAMESPACE_JSON_API$\$MODEL_NAME_PLURAL$;
+namespace $JSON_API_MODEL_NAMESPACE$;
 
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
 
