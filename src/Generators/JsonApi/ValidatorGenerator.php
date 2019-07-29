@@ -4,7 +4,6 @@ namespace PeteNys\Generator\Generators\JsonApi;
 
 use Illuminate\Support\Str;
 use PeteNys\Generator\Common\CommandData;
-use PeteNys\Generator\Common\GeneratorFieldRelation;
 use PeteNys\Generator\Utils\FileUtil;
 use PeteNys\Generator\Utils\TableFieldsGenerator;
 use PeteNys\Generator\Generators\BaseGenerator;

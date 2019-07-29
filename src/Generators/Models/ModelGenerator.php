@@ -88,7 +88,7 @@ class ModelGenerator extends BaseGenerator
 
         $templateData = str_replace(
             '$RELATIONS$',
-            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateRelations())),
+            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateModelRelations())),
             $templateData
         );
 
@@ -285,7 +285,7 @@ class ModelGenerator extends BaseGenerator
         return $casts;
     }
 
-    private function generateRelations()
+    private function generateModelRelations()
     {
         $relations = [];
 

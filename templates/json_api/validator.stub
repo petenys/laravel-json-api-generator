@@ -1,16 +1,16 @@
 <?php
 
-namespace $NAMESPACE_JSON_API$\$MODEL_NAME$;
+namespace $JSON_API_MODEL_PATH$;
 
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
 
-class Validators extends AbstractValidators
+class Validator extends AbstractValidators
 {
 
     /**
      * @var string
      */
-    protected $resourceType = '$MODEL_NAME_DASH_CASE$';
+    protected $resourceType = '$MODEL_NAME_DASH$';
 
     /**
      * @var array

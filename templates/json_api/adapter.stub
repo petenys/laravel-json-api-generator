@@ -1,6 +1,6 @@
 <?php
 
-namespace $NAMESPACE_JSON_API$\$MODEL_NAME$;
+namespace $JSON_API_MODEL_PATH$;
 
 use $NAMESPACE_MODEL$\$MODEL_NAME$ as Model;
 use App\JsonApi\EloquentAdapter;
@@ -26,5 +26,5 @@ class Adapter extends EloquentAdapter
     {
     }
 
-    $ADAPTER_RELATIONS$
+    $RELATIONS$
 }
