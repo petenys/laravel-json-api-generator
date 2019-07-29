@@ -214,7 +214,7 @@ class GeneratorConfig
         $commandData->addDynamicVariable('$MODEL_NAME_HUMAN$', $this->mHuman);
         $commandData->addDynamicVariable('$MODEL_NAME_PLURAL_HUMAN$', $this->mHumanPlural);
 
-        $commandData->addDynamicVariable('$JSON_API_MODEL_PATH$', $this->pathJsonApi.$this->mPlural.'/');
+        $commandData->addDynamicVariable('$JSON_API_MODEL_PATH$', $this->nsJsonApi.$this->mPlural.'\\');
 
         if (!empty($this->prefixes['route'])) {
             $commandData->addDynamicVariable('$ROUTE_NAMED_PREFIX$', $this->prefixes['route'].'.');
