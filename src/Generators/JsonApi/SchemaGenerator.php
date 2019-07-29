@@ -44,7 +44,7 @@ class SchemaGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('json_api.schema', 'laravel-generator');
+        $templateData = get_template_stub('json_api.schema', 'laravel-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -56,7 +56,7 @@ class SchemaGenerator extends BaseGenerator
 
     private function fillTemplate($templateData)
     {
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
         $templateData = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $templateData);
 

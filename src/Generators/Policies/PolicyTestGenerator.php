@@ -26,7 +26,7 @@ class PolicyTestGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('test.policy_test', 'laravel-generator');
+        $templateData = get_template_stub('test.policy_test', 'laravel-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -38,7 +38,7 @@ class PolicyTestGenerator extends BaseGenerator
 
     private function fillTemplate($templateData)
     {
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
         return $templateData;
     }

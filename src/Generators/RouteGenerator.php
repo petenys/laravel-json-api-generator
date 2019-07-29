@@ -26,9 +26,9 @@ class RouteGenerator extends BaseGenerator
 
         $this->routeContents = file_get_contents($this->path);
 
-        $routesTemplate = get_template('controller.routes', 'laravel-generator');
+        $routesTemplate = get_template_stub('controller.routes', 'laravel-generator');
 
-        $this->routesTemplate = fill_template($this->commandData->dynamicVars, $routesTemplate);
+        $this->routesTemplate = fill_template_stub($this->commandData->dynamicVars, $routesTemplate);
     }
 
     public function generate()

@@ -8,35 +8,35 @@ use \Auth;
 class $MODEL_NAME$Observer
 {
 
-    public function creating($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function creating($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function created($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function created($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function updated($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function updated($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function updating($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function updating($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function saved($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function saved($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function saving($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function saving($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function deleted($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function deleted($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
-    public function deleting($MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function deleting($MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 }

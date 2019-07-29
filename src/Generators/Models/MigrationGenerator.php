@@ -25,9 +25,9 @@ class MigrationGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('model.migration', 'laravel-generator');
+        $templateData = get_template_stub('model.migration', 'laravel-generator');
 
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
         $templateData = str_replace('$FIELDS$', $this->generateFields(), $templateData);
 
@@ -80,7 +80,7 @@ class MigrationGenerator extends BaseGenerator
             $fields[] = '$table->softDeletes();';
         }
 
-        return implode(infy_nl_tab(1, 3), array_merge($fields, $foreignKeys));
+        return implode(petenys_nl_tab(1, 3), array_merge($fields, $foreignKeys));
     }
 
     public function rollback()

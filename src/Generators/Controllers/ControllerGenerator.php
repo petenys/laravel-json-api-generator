@@ -26,9 +26,9 @@ class ControllerGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('controller.json_controller', 'laravel-generator');
+        $templateData = get_template_stub('controller.json_controller', 'laravel-generator');
 
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
         $templateData = $this->fillDocs($templateData);
 
         FileUtil::createFile($this->path, $this->fileName, $templateData);
@@ -46,8 +46,8 @@ class ControllerGenerator extends BaseGenerator
 
         foreach ($methods as $method) {
             $key = '$DOC_'.strtoupper($method).'$';
-            $docTemplate = get_template($templatePrefix.'.'.$method, $templateType);
-            $docTemplate = fill_template($this->commandData->dynamicVars, $docTemplate);
+            $docTemplate = get_template_stub($templatePrefix.'.'.$method, $templateType);
+            $docTemplate = fill_template_stub($this->commandData->dynamicVars, $docTemplate);
             $templateData = str_replace($key, $docTemplate, $templateData);
         }
 

@@ -18,11 +18,11 @@ class HTMLFieldGenerator
             case 'email':
             case 'password':
             case 'number':
-                $fieldTemplate = get_template('scaffold.fields.'.$field->htmlType, $templateType);
+                $fieldTemplate = get_template_stub('scaffold.fields.'.$field->htmlType, $templateType);
                 break;
             case 'select':
             case 'enum':
-                $fieldTemplate = get_template('scaffold.fields.select', $templateType);
+                $fieldTemplate = get_template_stub('scaffold.fields.select', $templateType);
                 $radioLabels = GeneratorFieldsInputUtil::prepareKeyValueArrFromLabelValueStr($field->htmlValues);
 
                 $fieldTemplate = str_replace(
@@ -32,7 +32,7 @@ class HTMLFieldGenerator
                 );
                 break;
             case 'checkbox':
-                $fieldTemplate = get_template('scaffold.fields.checkbox', $templateType);
+                $fieldTemplate = get_template_stub('scaffold.fields.checkbox', $templateType);
                 if (count($field->htmlValues) > 0) {
                     $checkboxValue = $field->htmlValues[0];
                 } else {
@@ -41,8 +41,8 @@ class HTMLFieldGenerator
                 $fieldTemplate = str_replace('$CHECKBOX_VALUE$', $checkboxValue, $fieldTemplate);
                 break;
             case 'radio':
-                $fieldTemplate = get_template('scaffold.fields.radio_group', $templateType);
-                $radioTemplate = get_template('scaffold.fields.radio', $templateType);
+                $fieldTemplate = get_template_stub('scaffold.fields.radio_group', $templateType);
+                $radioTemplate = get_template_stub('scaffold.fields.radio', $templateType);
 
                 $radioLabels = GeneratorFieldsInputUtil::prepareKeyValueArrFromLabelValueStr($field->htmlValues);
 
@@ -55,7 +55,7 @@ class HTMLFieldGenerator
                 $fieldTemplate = str_replace('$RADIO_BUTTONS$', implode("\n", $radioButtons), $fieldTemplate);
                 break;
             case 'toggle-switch':
-                $fieldTemplate = get_template('scaffold.fields.toggle-switch', $templateType);
+                $fieldTemplate = get_template_stub('scaffold.fields.toggle-switch', $templateType);
                 break;
         }
 

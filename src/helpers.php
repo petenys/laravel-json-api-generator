@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 use PeteNys\Generator\Common\GeneratorField;
 
-if (!function_exists('infy_tab')) {
+if (!function_exists('petenys_tab')) {
     /**
      * Generates tab with spaces.
      *
@@ -11,13 +11,13 @@ if (!function_exists('infy_tab')) {
      *
      * @return string
      */
-    function infy_tab($spaces = 4)
+    function petenys_tab($spaces = 4)
     {
         return str_repeat(' ', $spaces);
     }
 }
 
-if (!function_exists('infy_tabs')) {
+if (!function_exists('petenys_tabs')) {
     /**
      * Generates tab with spaces.
      *
@@ -26,13 +26,13 @@ if (!function_exists('infy_tabs')) {
      *
      * @return string
      */
-    function infy_tabs($tabs, $spaces = 4)
+    function petenys_tabs($tabs, $spaces = 4)
     {
-        return str_repeat(infy_tab($spaces), $tabs);
+        return str_repeat(petenys_tab($spaces), $tabs);
     }
 }
 
-if (!function_exists('infy_nl')) {
+if (!function_exists('petenys_nl')) {
     /**
      * Generates new line char.
      *
@@ -40,13 +40,13 @@ if (!function_exists('infy_nl')) {
      *
      * @return string
      */
-    function infy_nl($count = 1)
+    function petenys_nl($count = 1)
     {
         return str_repeat(PHP_EOL, $count);
     }
 }
 
-if (!function_exists('infy_nls')) {
+if (!function_exists('petenys_nls')) {
     /**
      * Generates new line char.
      *
@@ -55,13 +55,13 @@ if (!function_exists('infy_nls')) {
      *
      * @return string
      */
-    function infy_nls($count, $nls = 1)
+    function petenys_nls($count, $nls = 1)
     {
-        return str_repeat(infy_nl($nls), $count);
+        return str_repeat(petenys_nl($nls), $count);
     }
 }
 
-if (!function_exists('infy_nl_tab')) {
+if (!function_exists('petenys_nl_tab')) {
     /**
      * Generates new line char.
      *
@@ -70,13 +70,13 @@ if (!function_exists('infy_nl_tab')) {
      *
      * @return string
      */
-    function infy_nl_tab($lns = 1, $tabs = 1)
+    function petenys_nl_tab($lns = 1, $tabs = 1)
     {
-        return infy_nls($lns).infy_tabs($tabs);
+        return petenys_nls($lns).petenys_tabs($tabs);
     }
 }
 
-if (!function_exists('get_template_file_path')) {
+if (!function_exists('get_templates_file_path')) {
     /**
      * get path for template file.
      *
@@ -85,7 +85,7 @@ if (!function_exists('get_template_file_path')) {
      *
      * @return string
      */
-    function get_template_file_path($templateName, $templateType)
+    function get_templates_file_path($templateName, $templateType)
     {
         $templateName = str_replace('.', '/', $templateName);
 
@@ -104,7 +104,7 @@ if (!function_exists('get_template_file_path')) {
     }
 }
 
-if (!function_exists('get_template')) {
+if (!function_exists('get_template_stub')) {
     /**
      * get template contents.
      *
@@ -113,15 +113,15 @@ if (!function_exists('get_template')) {
      *
      * @return string
      */
-    function get_template($templateName, $templateType)
+    function get_template_stub($templateName, $templateType)
     {
-        $path = get_template_file_path($templateName, $templateType);
+        $path = get_templates_file_path($templateName, $templateType);
 
         return file_get_contents($path);
     }
 }
 
-if (!function_exists('fill_template')) {
+if (!function_exists('fill_template_stub')) {
     /**
      * fill template with variable values.
      *
@@ -130,7 +130,7 @@ if (!function_exists('fill_template')) {
      *
      * @return string
      */
-    function fill_template($variables, $template)
+    function fill_template_stub($variables, $template)
     {
         foreach ($variables as $variable => $value) {
             $template = str_replace($variable, $value, $template);
@@ -140,7 +140,7 @@ if (!function_exists('fill_template')) {
     }
 }
 
-if (!function_exists('fill_field_template')) {
+if (!function_exists('fill_field_template_contents')) {
     /**
      * fill field template with variable values.
      *
@@ -150,7 +150,7 @@ if (!function_exists('fill_field_template')) {
      *
      * @return string
      */
-    function fill_field_template($variables, $template, $field)
+    function fill_field_template_contents($variables, $template, $field)
     {
         foreach ($variables as $variable => $key) {
             $template = str_replace($variable, $field->$key, $template);
@@ -160,7 +160,7 @@ if (!function_exists('fill_field_template')) {
     }
 }
 
-if (!function_exists('fill_template_with_field_data')) {
+if (!function_exists('fill_template_with_fields')) {
     /**
      * fill template with field data.
      *
@@ -171,15 +171,15 @@ if (!function_exists('fill_template_with_field_data')) {
      *
      * @return string
      */
-    function fill_template_with_field_data($variables, $fieldVariables, $template, $field)
+    function fill_template_with_fields($variables, $fieldVariables, $template, $field)
     {
-        $template = fill_template($variables, $template);
+        $template = fill_template_stub($variables, $template);
 
-        return fill_field_template($fieldVariables, $template, $field);
+        return fill_field_template_contents($fieldVariables, $template, $field);
     }
 }
 
-if (!function_exists('model_name_from_table_name')) {
+if (!function_exists('get_model_name_from_table_name')) {
     /**
      * generates model name from table name.
      *
@@ -187,7 +187,7 @@ if (!function_exists('model_name_from_table_name')) {
      *
      * @return string
      */
-    function model_name_from_table_name($tableName)
+    function get_model_name_from_table_name($tableName)
     {
         return Str::ucfirst(Str::camel(Str::singular($tableName)));
     }

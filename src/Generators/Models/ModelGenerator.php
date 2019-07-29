@@ -44,7 +44,7 @@ class ModelGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('model.model', 'laravel-generator');
+        $templateData = get_template_stub('model.model', 'laravel-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -56,7 +56,7 @@ class ModelGenerator extends BaseGenerator
 
     private function fillTemplate($templateData)
     {
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
         $templateData = $this->fillSoftDeletes($templateData);
 
@@ -73,22 +73,22 @@ class ModelGenerator extends BaseGenerator
         $templateData = $this->fillTimestamps($templateData);
 
         if ($this->commandData->getOption('primary')) {
-            $primary = infy_tab()."protected \$primaryKey = '".$this->commandData->getOption('primary')."';\n";
+            $primary = petenys_tab()."protected \$primaryKey = '".$this->commandData->getOption('primary')."';\n";
         } else {
             $primary = '';
         }
 
         $templateData = str_replace('$PRIMARY$', $primary, $templateData);
 
-        $templateData = str_replace('$FIELDS$', implode(','.infy_nl_tab(1, 2), $fillables), $templateData);
+        $templateData = str_replace('$FIELDS$', implode(','.petenys_nl_tab(1, 2), $fillables), $templateData);
 
-        $templateData = str_replace('$RULES$', implode(','.infy_nl_tab(1, 2), $this->generateRules()), $templateData);
+        $templateData = str_replace('$RULES$', implode(','.petenys_nl_tab(1, 2), $this->generateRules()), $templateData);
 
-        $templateData = str_replace('$CAST$', implode(','.infy_nl_tab(1, 2), $this->generateCasts()), $templateData);
+        $templateData = str_replace('$CAST$', implode(','.petenys_nl_tab(1, 2), $this->generateCasts()), $templateData);
 
         $templateData = str_replace(
             '$RELATIONS$',
-            fill_template($this->commandData->dynamicVars, implode(PHP_EOL.infy_nl_tab(1, 1), $this->generateRelations())),
+            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateRelations())),
             $templateData
         );
 
@@ -108,10 +108,10 @@ class ModelGenerator extends BaseGenerator
                 '$SOFT_DELETE_IMPORT$', "use Illuminate\\Database\\Eloquent\\SoftDeletes;\n",
                 $templateData
             );
-            $templateData = str_replace('$SOFT_DELETE$', infy_tab()."use SoftDeletes;\n", $templateData);
+            $templateData = str_replace('$SOFT_DELETE$', petenys_tab()."use SoftDeletes;\n", $templateData);
             $deletedAtTimestamp = config('petenys.laravel_json_api_generator.timestamps.deleted_at', 'deleted_at');
             $templateData = str_replace(
-                '$SOFT_DELETE_DATES$', infy_nl_tab()."protected \$dates = ['".$deletedAtTimestamp."'];\n",
+                '$SOFT_DELETE_DATES$', petenys_nl_tab()."protected \$dates = ['".$deletedAtTimestamp."'];\n",
                 $templateData
             );
         }
@@ -121,8 +121,8 @@ class ModelGenerator extends BaseGenerator
 
     private function fillDocs($templateData)
     {
-        $docsTemplate = get_template('docs.model', 'laravel-generator');
-        $docsTemplate = fill_template($this->commandData->dynamicVars, $docsTemplate);
+        $docsTemplate = get_template_stub('docs.model', 'laravel-generator');
+        $docsTemplate = fill_template_stub($this->commandData->dynamicVars, $docsTemplate);
 
         $fillables = '';
         foreach ($this->commandData->relations as $relation) {
@@ -194,14 +194,14 @@ class ModelGenerator extends BaseGenerator
 
         if ($this->commandData->getOption('fromTable')) {
             if (empty($timestamps)) {
-                $replace = infy_nl_tab()."public \$timestamps = false;\n";
+                $replace = petenys_nl_tab()."public \$timestamps = false;\n";
             } else {
                 list($created_at, $updated_at) = collect($timestamps)->map(function ($field) {
                     return !empty($field) ? "'$field'" : 'null';
                 });
 
-                $replace .= infy_nl_tab()."const CREATED_AT = $created_at;";
-                $replace .= infy_nl_tab()."const UPDATED_AT = $updated_at;\n";
+                $replace .= petenys_nl_tab()."const CREATED_AT = $created_at;";
+                $replace .= petenys_nl_tab()."const UPDATED_AT = $updated_at;\n";
             }
         }
 

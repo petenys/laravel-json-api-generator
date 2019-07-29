@@ -26,7 +26,7 @@ class TestTraitGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('test.trait', 'laravel-generator');
+        $templateData = get_template_stub('test.trait', 'laravel-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -38,9 +38,9 @@ class TestTraitGenerator extends BaseGenerator
 
     private function fillTemplate($templateData)
     {
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
-        $templateData = str_replace('$FIELDS$', implode(','.infy_nl_tab(1, 3), $this->generateFields()),
+        $templateData = str_replace('$FIELDS$', implode(','.petenys_nl_tab(1, 3), $this->generateFields()),
             $templateData);
 
         return $templateData;

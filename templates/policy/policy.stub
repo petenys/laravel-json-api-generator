@@ -14,10 +14,10 @@ class $MODEL_NAME$Policy
      * Determine whether the user can view
      *
      * @param  \$NAMESPACE_MODEL$\User  $user
-     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE$
      * @return mixed
      */
-    public function view(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function view(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
@@ -35,10 +35,10 @@ class $MODEL_NAME$Policy
      * Determine whether the user can update
      *
      * @param  \$NAMESPACE_MODEL$\User  $user
-     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE$
      * @return mixed
      */
-    public function update(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function update(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
@@ -46,10 +46,10 @@ class $MODEL_NAME$Policy
      * Determine whether the user can delete
      *
      * @param  \$NAMESPACE_MODEL$\User  $user
-     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE$
      * @return mixed
      */
-    public function delete(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function delete(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
@@ -57,10 +57,10 @@ class $MODEL_NAME$Policy
      * Determine whether the user can restore
      *
      * @param  \$NAMESPACE_MODEL$\User  $user
-     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE$
      * @return mixed
      */
-    public function restore(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function restore(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 
@@ -68,10 +68,10 @@ class $MODEL_NAME$Policy
      * Determine whether the user can permanently delete
      *
      * @param  \$NAMESPACE_MODEL$\User  $user
-     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE$
      * @return mixed
      */
-    public function forceDelete(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    public function forceDelete(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE$)
     {
     }
 }

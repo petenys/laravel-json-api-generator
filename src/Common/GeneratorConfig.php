@@ -71,7 +71,6 @@ class GeneratorConfig
         'prefix',
         'paginate',
         'skip',
-        'views',
         'relations',
         'plural',
         'softDelete',
@@ -147,12 +146,6 @@ class GeneratorConfig
 
         if (!empty($prefix)) {
             $prefix .= '/';
-        }
-
-        $viewPrefix = $this->prefixes['view'];
-
-        if (!empty($viewPrefix)) {
-            $viewPrefix .= '/';
         }
 
         $this->pathController = config(

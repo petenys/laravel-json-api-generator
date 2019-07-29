@@ -44,7 +44,7 @@ class AdapterGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template('json_api.adapter', 'laravel-generator');
+        $templateData = get_template_stub('json_api.adapter', 'laravel-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -56,11 +56,11 @@ class AdapterGenerator extends BaseGenerator
 
     private function fillTemplate($templateData)
     {
-        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+        $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
         $templateData = str_replace(
             '$RELATIONS$',
-            fill_template($this->commandData->dynamicVars, implode(PHP_EOL.infy_nl_tab(1, 1), $this->generateRelations())),
+            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateRelations())),
             $templateData
         );
 
