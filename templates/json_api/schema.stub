@@ -12,7 +12,7 @@ class Schema extends SchemaProvider
     /**
      * @var string
      */
-    protected $resourceType = '$MODEL_NAME_DASHED$';
+    protected $resourceType = '$MODEL_NAME_PLURAL_DASHED$';
 
     /**
      * @param object $resource
