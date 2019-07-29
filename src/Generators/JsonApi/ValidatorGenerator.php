@@ -36,7 +36,7 @@ class ValidatorGenerator extends BaseGenerator
     public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = $this->commandData->dynamicVars['$JSON_API_MODEL_PATH$'];
+        $this->path = $this->commandData->dynamicVars['$JSON_API_MODEL_FILE_PATH$'];
         $this->fileName = 'Validator.php';
         $this->table = $this->commandData->dynamicVars['$TABLE_NAME$'];
     }

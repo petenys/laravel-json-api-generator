@@ -119,7 +119,7 @@ class GeneratorConfig
                 'petenys.laravel_json_api_generator.namespace.json_api_controller',
                 'App\Http\Controllers\Json'
             ).$prefix;
-        $this->nsJsonApi = config('petenys.laravel_json_api_generator.namespace.json_api', 'App\JsonApi').$prefix;
+        $this->nsJsonApi = config('petenys.laravel_json_api_generator.namespace.json_api', 'App\JsonApi');
         $this->nsObserver = config('petenys.laravel_json_api_generator.namespace.observer', 'App\Observers').$prefix;
         $this->nsPolicy = config('petenys.laravel_json_api_generator.namespace.policy', 'App\Policies').$prefix;
         $this->nsRepository = config('petenys.laravel_json_api_generator.namespace.repository', 'App\Repositories').$prefix;
@@ -214,7 +214,8 @@ class GeneratorConfig
         $commandData->addDynamicVariable('$MODEL_NAME_HUMAN$', $this->mHuman);
         $commandData->addDynamicVariable('$MODEL_NAME_PLURAL_HUMAN$', $this->mHumanPlural);
 
-        $commandData->addDynamicVariable('$JSON_API_MODEL_PATH$', $this->nsJsonApi.$this->mPlural.'\\');
+        $commandData->addDynamicVariable('$JSON_API_MODEL_NAMESPACE$', $this->nsJsonApi.'\\'.$this->mPlural);
+        $commandData->addDynamicVariable('$JSON_API_MODEL_FILE_PATH$', $this->pathJsonApi.$this->mPlural.'/');
 
         if (!empty($this->prefixes['route'])) {
             $commandData->addDynamicVariable('$ROUTE_NAMED_PREFIX$', $this->prefixes['route'].'.');

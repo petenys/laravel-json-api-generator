@@ -1,6 +1,6 @@
 <?php
 
-namespace $JSON_API_MODEL_PATH$;
+namespace $JSON_API_MODEL_NAMESPACE$;
 
 use $NAMESPACE_MODEL$\$MODEL_NAME$ as Model;
 use CloudCreativity\LaravelJsonApi\Exceptions\RuntimeException;
