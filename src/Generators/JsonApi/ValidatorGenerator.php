@@ -44,7 +44,7 @@ class ValidatorGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('json_api.validator', 'laravel-generator');
+        $templateData = get_template_stub('json_api.validator', 'laravel-json-api-generator');
 
         $templateData = $this->fillTemplate($templateData);
 

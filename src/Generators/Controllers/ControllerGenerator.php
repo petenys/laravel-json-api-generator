@@ -26,7 +26,7 @@ class ControllerGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('controller.json_controller', 'laravel-generator');
+        $templateData = get_template_stub('controller.json_controller', 'laravel-json-api-generator');
 
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
         $templateData = $this->fillDocs($templateData);
@@ -42,7 +42,7 @@ class ControllerGenerator extends BaseGenerator
         $methods = ['controller', 'index', 'store', 'show', 'update', 'destroy'];
 
         $templatePrefix = 'api.docs.controller';
-        $templateType = 'laravel-generator';
+        $templateType = 'laravel-json-api-generator';
 
         foreach ($methods as $method) {
             $key = '$DOC_'.strtoupper($method).'$';

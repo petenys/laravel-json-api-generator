@@ -44,7 +44,7 @@ class ModelGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('model.model', 'laravel-generator');
+        $templateData = get_template_stub('model.model', 'laravel-json-api-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -121,7 +121,7 @@ class ModelGenerator extends BaseGenerator
 
     private function fillDocs($templateData)
     {
-        $docsTemplate = get_template_stub('docs.model', 'laravel-generator');
+        $docsTemplate = get_template_stub('docs.model', 'laravel-json-api-generator');
         $docsTemplate = fill_template_stub($this->commandData->dynamicVars, $docsTemplate);
 
         $fillables = '';

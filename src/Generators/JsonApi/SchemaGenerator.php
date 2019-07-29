@@ -44,7 +44,7 @@ class SchemaGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('json_api.schema', 'laravel-generator');
+        $templateData = get_template_stub('json_api.schema', 'laravel-json-api-generator');
 
         $templateData = $this->fillTemplate($templateData);
 

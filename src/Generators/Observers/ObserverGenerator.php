@@ -44,7 +44,7 @@ class ObserverGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('observer.observer', 'laravel-generator');
+        $templateData = get_template_stub('observer.observer', 'laravel-json-api-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
@@ -121,7 +121,7 @@ class ObserverGenerator extends BaseGenerator
 
     private function fillDocs($templateData)
     {
-        $docsTemplate = get_template_stub('docs.model', 'laravel-generator');
+        $docsTemplate = get_template_stub('docs.model', 'laravel-json-api-generator');
         $docsTemplate = fill_template_stub($this->commandData->dynamicVars, $docsTemplate);
 
         $fillables = '';

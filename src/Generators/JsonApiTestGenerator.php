@@ -25,7 +25,7 @@ class JsonApiTestGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('json_api_test', 'laravel-generator');
+        $templateData = get_template_stub('json_api_test', 'laravel-json-api-generator');
 
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 

@@ -82,7 +82,7 @@ class GeneratorFieldAdapterRelation
         $inputs = $this->inputs;
         $modelName = array_shift($inputs);
 
-        $template = get_template_stub('model.relationship', 'laravel-generator');
+        $template = get_template_stub('model.relationship', 'laravel-json-api-generator');
 
         $template = str_replace('$RELATIONSHIP_CLASS$', $relationClass, $template);
         $template = str_replace('$FUNCTION_NAME$', $functionName, $template);

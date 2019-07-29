@@ -25,7 +25,7 @@ class MigrationGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('model.migration', 'laravel-generator');
+        $templateData = get_template_stub('model.migration', 'laravel-json-api-generator');
 
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 

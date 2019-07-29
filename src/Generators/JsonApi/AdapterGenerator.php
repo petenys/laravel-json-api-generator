@@ -44,7 +44,7 @@ class AdapterGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('json_api.adapter', 'laravel-generator');
+        $templateData = get_template_stub('json_api.adapter', 'laravel-json-api-generator');
 
         $templateData = $this->fillTemplate($templateData);
 

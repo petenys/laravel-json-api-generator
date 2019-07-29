@@ -26,7 +26,7 @@ class PolicyTestGenerator extends BaseGenerator
 
     public function generate()
     {
-        $templateData = get_template_stub('test.policy_test', 'laravel-generator');
+        $templateData = get_template_stub('test.policy_test', 'laravel-json-api-generator');
 
         $templateData = $this->fillTemplate($templateData);
 
