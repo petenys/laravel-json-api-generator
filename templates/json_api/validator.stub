@@ -1,0 +1,51 @@
+<?php
+
+namespace $NAMESPACE_JSON_API$\$MODEL_NAME$;
+
+use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
+
+class Validators extends AbstractValidators
+{
+
+    /**
+     * @var string
+     */
+    protected $resourceType = '$MODEL_NAME_DASH_CASE$';
+
+    /**
+     * @var array
+     */
+    protected $allowedFilteringParameters = [
+        'id',
+    ];
+
+    protected $allowedIncludePaths = [
+    ];
+
+    /**
+     * Get resource validation rules.
+     *
+     * @param mixed|null $record
+     *      the record being updated, or null if creating a resource.
+     * @return mixed
+     */
+    protected function rules($record = null): array
+    {
+        $required = $record ? 'sometimes|required' : 'required';
+        return [
+        ];
+    }
+
+    protected function queryRules(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function relationshipRules($record = null, string $field): array
+    {
+        return [];
+    }
+}

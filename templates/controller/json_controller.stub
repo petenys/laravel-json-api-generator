@@ -1,0 +1,24 @@
+<?php
+
+namespace $NAMESPACE_JSON_CONTROLLER$;
+
+$JSON_CONTROLLER_USE_CLASSES$
+use CloudCreativity\LaravelJsonApi\Http\Controllers\JsonApiController;
+use CloudCreativity\LaravelJsonApi\Contracts\Store\StoreInterface;
+use CloudCreativity\LaravelJsonApi\Exceptions\ValidationException;
+use CloudCreativity\LaravelJsonApi\Http\Controllers\JsonApiController;
+use CloudCreativity\LaravelJsonApi\Http\Requests\ValidatedRequest;
+use CloudCreativity\LaravelJsonApi\Http\Requests\CreateResource;
+use Illuminate\Http\Response;
+use Neomerx\JsonApi\Document\Error;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+
+$DOC_CONTROLLER$
+class $MODEL_NAME$Controller extends JsonApiController
+{
+
+    protected function creating(ValidatedRequest $request)
+    {
+    }
+
+}

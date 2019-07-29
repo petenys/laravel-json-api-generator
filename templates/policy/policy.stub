@@ -1,0 +1,77 @@
+<?php
+
+namespace $NAMESPACE_POLICIES$;
+
+use $NAMESPACE_MODEL$\User;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class $MODEL_NAME$Policy
+{
+    use HandlesAuthorization;
+
+    /**
+     * Determine whether the user can view
+     *
+     * @param  \$NAMESPACE_MODEL$\User  $user
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @return mixed
+     */
+    public function view(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    {
+    }
+
+    /**
+     * Determine whether the user can create
+     *
+     * @param  \$NAMESPACE_MODEL$\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+    }
+
+    /**
+     * Determine whether the user can update
+     *
+     * @param  \$NAMESPACE_MODEL$\User  $user
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @return mixed
+     */
+    public function update(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    {
+    }
+
+    /**
+     * Determine whether the user can delete
+     *
+     * @param  \$NAMESPACE_MODEL$\User  $user
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @return mixed
+     */
+    public function delete(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    {
+    }
+
+    /**
+     * Determine whether the user can restore
+     *
+     * @param  \$NAMESPACE_MODEL$\User  $user
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @return mixed
+     */
+    public function restore(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    {
+    }
+
+    /**
+     * Determine whether the user can permanently delete
+     *
+     * @param  \$NAMESPACE_MODEL$\User  $user
+     * @param  \$NAMESPACE_MODEL$\$MODEL_NAME$  $MODEL_NAME_SNAKE_CASE$
+     * @return mixed
+     */
+    public function forceDelete(User $user, $MODEL_NAME$ $MODEL_NAME_SNAKE_CASE$)
+    {
+    }
+}

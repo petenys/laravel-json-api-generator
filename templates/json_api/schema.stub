@@ -1,0 +1,32 @@
+<?php
+
+namespace $NAMESPACE_JSON_API$\$MODEL_NAME$;
+
+use $NAMESPACE_MODEL$\$MODEL_NAME$ as Model;
+use CloudCreativity\LaravelJsonApi\Exceptions\RuntimeException;
+use App\JsonApi\DefaultSchema as SchemaProvider;
+
+class Schema extends SchemaProvider
+{
+
+    /**
+     * @var string
+     */
+    protected $resourceType = '$MODEL_NAME_DASH_CASE$';
+
+    /**
+     * @param object $resource
+     * @param bool $isPrimary
+     * @param array $includeRelationships
+     * @return array
+     */
+    public function getRelationships($resource, $isPrimary, array $includeRelationships)
+    {
+        if (!$resource instanceof Model) {
+            throw new RuntimeException('Expecting an $MODEL_NAME$ model.');
+        }
+        return [
+    				$SCHEMA_RELATIONSHIPS$
+        ];
+    }
+}

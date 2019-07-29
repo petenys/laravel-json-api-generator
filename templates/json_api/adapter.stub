@@ -1,0 +1,30 @@
+<?php
+
+namespace $NAMESPACE_JSON_API$\$MODEL_NAME$;
+
+use $NAMESPACE_MODEL$\$MODEL_NAME$ as Model;
+use App\JsonApi\EloquentAdapter;
+use Illuminate\Support\Collection;
+
+class Adapter extends EloquentAdapter
+{
+
+    $ADAPTER_RELATIONSHIPS$
+
+    /**
+     * Adapter constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(new Model());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function filter($query, Collection $filters)
+    {
+    }
+
+    $ADAPTER_RELATIONS$
+}

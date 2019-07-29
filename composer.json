@@ -1,0 +1,53 @@
+{
+    "name": "petenys/laravel-json-api-generator",
+    "description": "PeteNys Laravel JsonApi Generator",
+    "keywords": [
+        "laravel",
+        "json-api",
+        "model",
+        "migration",
+        "model",
+        "crud",
+        "repository",
+        "test",
+        "generator",
+        "cloudcreativity"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pete Nystrom",
+            "email": "petenystrom@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.8.*",
+        "prettus/l5-repository": "~2.6",
+        "laracasts/flash": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "PeteNys\\Generator\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\PeteNys\\Generator\\JsonApiGeneratorServiceProvider"
+            ]
+        }
+    }    
+}
