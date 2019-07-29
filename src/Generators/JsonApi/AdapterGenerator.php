@@ -37,7 +37,7 @@ class AdapterGenerator extends BaseGenerator
     public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = $commandData->config->pathJsonApi."\\".$this->commandData->modelName;
+        $this->path = $commandData->config->pathJsonApi.$this->commandData->modelName."\\";
         $this->fileName = 'Adapter.php';
         $this->table = $this->commandData->dynamicVars['$TABLE_NAME$'];
     }

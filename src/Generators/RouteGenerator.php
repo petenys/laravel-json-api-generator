@@ -17,7 +17,7 @@ class RouteGenerator extends BaseGenerator
     private $routeContents;
 
     /** @var string */
-    private $routesTemplate;
+    private $routeTemplate;
 
     public function __construct(CommandData $commandData)
     {
@@ -26,26 +26,26 @@ class RouteGenerator extends BaseGenerator
 
         $this->routeContents = file_get_contents($this->path);
 
-        $routesTemplate = get_template_stub('controller.routes', 'laravel-json-api-generator');
+        $routeTemplate = get_template_stub('json_api_route', 'laravel-json-api-generator');
 
-        $this->routesTemplate = fill_template_stub($this->commandData->dynamicVars, $routesTemplate);
+        $this->routeTemplate = fill_template_stub($this->commandData->dynamicVars, $routeTemplate);
     }
 
     public function generate()
     {
-        $this->routeContents .= "\n\n".$this->routesTemplate;
+        $this->routeContents .= "\n\n".$this->routeTemplate;
 
         file_put_contents($this->path, $this->routeContents);
 
-        $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api routes added.');
+        $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api route added.');
     }
 
     public function rollback()
     {
-        if (Str::contains($this->routeContents, $this->routesTemplate)) {
-            $this->routeContents = str_replace($this->routesTemplate, '', $this->routeContents);
+        if (Str::contains($this->routeContents, $this->routeTemplate)) {
+            $this->routeContents = str_replace($this->routeTemplate, '', $this->routeContents);
             file_put_contents($this->path, $this->routeContents);
-            $this->commandData->commandComment('json api routes deleted');
+            $this->commandData->commandComment('json api route deleted');
         }
     }
 }

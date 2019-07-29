@@ -37,7 +37,7 @@ class ValidatorGenerator extends BaseGenerator
     public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = $commandData->config->pathJsonApi."\\".$this->commandData->modelName;
+        $this->path = $commandData->config->pathJsonApi.$this->commandData->modelName."\\";
         $this->fileName = 'Validator.php';
         $this->table = $this->commandData->dynamicVars['$TABLE_NAME$'];
     }
@@ -57,12 +57,6 @@ class ValidatorGenerator extends BaseGenerator
     private function fillTemplate($templateData)
     {
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
-
-        $templateData = str_replace(
-            '$RELATIONS$',
-            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateRelations())),
-            $templateData
-        );
 
         $templateData = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $templateData);
 

@@ -11,8 +11,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use PeteNys\Generator\Common\CommandData;
 use PeteNys\Generator\Generators\Controllers\ControllerGenerator;
-use PeteNys\Generator\Generators\Controllers\RouteGenerator;
-use PeteNys\Generator\Generators\Controllers\JsonApiTestGenerator;
+use PeteNys\Generator\Generators\RouteGenerator;
+use PeteNys\Generator\Generators\JsonApiTestGenerator;
 use PeteNys\Generator\Generators\Models\MigrationGenerator;
 use PeteNys\Generator\Generators\Models\ModelGenerator;
 use PeteNys\Generator\Generators\Repositories\RepositoryGenerator;
@@ -213,12 +213,12 @@ class BaseCommand extends Command
             ['tableName', null, InputOption::VALUE_REQUIRED, 'Table Name'],
             ['fromTable', null, InputOption::VALUE_NONE, 'Generate from existing table'],
             ['ignoreFields', null, InputOption::VALUE_REQUIRED, 'Ignore fields while generating from table'],
-            ['include', null, InputOption::VALUE_REQUIRED, 'Include Specific Items to Generate (controller,migration,observer,policy,routes,tests,dump-autoload)'],
+            ['include', null, InputOption::VALUE_REQUIRED, 'Include Specific Items to Generate (controller,migration,observer,policy,route,tests,dump-autoload)'],
             ['save', null, InputOption::VALUE_NONE, 'Save model schema to file'],
             ['primary', null, InputOption::VALUE_REQUIRED, 'Custom primary key'],
             ['prefix', null, InputOption::VALUE_REQUIRED, 'Prefix for all files'],
             ['paginate', null, InputOption::VALUE_REQUIRED, 'Pagination for index.blade.php'],
-            ['skip', null, InputOption::VALUE_REQUIRED, 'Skip Specific Items to Generate (adapter,schema,validator,model,repository,routes,tests,dump-autoload)'],
+            ['skip', null, InputOption::VALUE_REQUIRED, 'Skip Specific Items to Generate (adapter,schema,validator,model,repository,route,tests,dump-autoload)'],
             ['relations', null, InputOption::VALUE_NONE, 'Specify if you want to pass relationships for fields'],
             ['softDelete', null, InputOption::VALUE_NONE, 'Soft Delete Option'],
             ['forceMigrate', null, InputOption::VALUE_NONE, 'Specify if you want to run migration or not'],
