@@ -65,12 +65,12 @@ class GeneratorConfig
         'tableName',
         'fromTable',
         'ignoreFields',
+        'include',
         'save',
         'primary',
         'prefix',
         'paginate',
         'skip',
-        'datatables',
         'views',
         'relations',
         'plural',
@@ -303,14 +303,6 @@ class GeneratorConfig
         if (!empty($this->options['skip'])) {
             $this->options['skip'] = array_map('trim', explode(',', $this->options['skip']));
         }
-
-        if (!empty($this->options['datatables'])) {
-            if (strtolower($this->options['datatables']) == 'true') {
-                $this->addOns['datatables'] = true;
-            } else {
-                $this->addOns['datatables'] = false;
-            }
-        }
     }
 
     public function preparePrefixes()
@@ -383,7 +375,7 @@ class GeneratorConfig
             $this->loadDynamicVariables($this->commandData);
         }
 
-        $addOns = ['swagger', 'tests'];
+        $addOns = ['tests'];
 
         foreach ($addOns as $addOn) {
             if (isset($jsonData['addOns'][$addOn])) {
@@ -417,7 +409,6 @@ class GeneratorConfig
 
     public function prepareAddOns()
     {
-        $this->addOns['swagger'] = config('petenys.laravel_json_api_generator.add_on.swagger', false);
         $this->addOns['tests'] = config('petenys.laravel_json_api_generator.add_on.tests', false);
     }
 }

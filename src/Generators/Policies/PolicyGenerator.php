@@ -37,7 +37,7 @@ class PolicyGenerator extends BaseGenerator
     public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = $commandData->config->pathModel;
+        $this->path = $commandData->config->pathPolicy;
         $this->fileName = $this->commandData->modelName.'.php';
         $this->table = $this->commandData->dynamicVars['$TABLE_NAME$'];
     }
@@ -121,26 +121,22 @@ class PolicyGenerator extends BaseGenerator
 
     private function fillDocs($templateData)
     {
-        if ($this->commandData->getAddOn('swagger')) {
-            $templateData = $this->generateSwagger($templateData);
-        } else {
-            $docsTemplate = get_template('docs.model', 'laravel-generator');
-            $docsTemplate = fill_template($this->commandData->dynamicVars, $docsTemplate);
+        $docsTemplate = get_template('docs.model', 'laravel-generator');
+        $docsTemplate = fill_template($this->commandData->dynamicVars, $docsTemplate);
 
-            $fillables = '';
-            foreach ($this->commandData->relations as $relation) {
-                $fillables .= ' * @property '.$this->getPHPDocType($relation->type, $relation).PHP_EOL;
-            }
-            foreach ($this->commandData->fields as $field) {
-                if ($field->isFillable) {
-                    $fillables .= ' * @property '.$this->getPHPDocType($field->fieldType).' '.$field->name.PHP_EOL;
-                }
-            }
-            $docsTemplate = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $docsTemplate);
-            $docsTemplate = str_replace('$PHPDOC$', $fillables, $docsTemplate);
-
-            $templateData = str_replace('$DOCS$', $docsTemplate, $templateData);
+        $fillables = '';
+        foreach ($this->commandData->relations as $relation) {
+            $fillables .= ' * @property '.$this->getPHPDocType($relation->type, $relation).PHP_EOL;
         }
+        foreach ($this->commandData->fields as $field) {
+            if ($field->isFillable) {
+                $fillables .= ' * @property '.$this->getPHPDocType($field->fieldType).' '.$field->name.PHP_EOL;
+            }
+        }
+        $docsTemplate = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $docsTemplate);
+        $docsTemplate = str_replace('$PHPDOC$', $fillables, $docsTemplate);
+
+        $templateData = str_replace('$DOCS$', $docsTemplate, $templateData);
 
         return $templateData;
     }
@@ -171,35 +167,9 @@ class PolicyGenerator extends BaseGenerator
             case 'hmt':
                 return '\Illuminate\Database\Eloquent\Collection'.' '.Str::camel(Str::plural($relation->inputs[0]));
             default:
-                $fieldData = SwaggerGenerator::getFieldType($db_type);
-                if (!empty($fieldData['fieldType'])) {
-                    return $fieldData['fieldType'];
-                }
 
                 return $db_type;
         }
-    }
-
-    public function generateSwagger($templateData)
-    {
-        $fieldTypes = SwaggerGenerator::generateTypes($this->commandData->fields);
-
-        $template = get_template('model_docs.model', 'swagger-generator');
-
-        $template = fill_template($this->commandData->dynamicVars, $template);
-
-        $template = str_replace('$REQUIRED_FIELDS$',
-            '"'.implode('"'.', '.'"', $this->generateRequiredFields()).'"', $template);
-
-        $propertyTemplate = get_template('model_docs.property', 'swagger-generator');
-
-        $properties = SwaggerGenerator::preparePropertyFields($propertyTemplate, $fieldTypes);
-
-        $template = str_replace('$PROPERTIES$', implode(",\n", $properties), $template);
-
-        $templateData = str_replace('$DOCS$', $template, $templateData);
-
-        return $templateData;
     }
 
     private function generateRequiredFields()

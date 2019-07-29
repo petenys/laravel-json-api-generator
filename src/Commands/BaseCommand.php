@@ -133,9 +133,6 @@ class BaseCommand extends Command
 
     public function performPostActions($runMigration = false)
     {
-        if ($this->commandData->getOption('save')) {
-            $this->saveSchemaFile();
-        }
 
         if ($runMigration) {
             if ($this->commandData->getOption('forceMigrate')) {

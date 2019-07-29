@@ -121,26 +121,22 @@ class ModelGenerator extends BaseGenerator
 
     private function fillDocs($templateData)
     {
-        if ($this->commandData->getAddOn('swagger')) {
-            $templateData = $this->generateSwagger($templateData);
-        } else {
-            $docsTemplate = get_template('docs.model', 'laravel-generator');
-            $docsTemplate = fill_template($this->commandData->dynamicVars, $docsTemplate);
+        $docsTemplate = get_template('docs.model', 'laravel-generator');
+        $docsTemplate = fill_template($this->commandData->dynamicVars, $docsTemplate);
 
-            $fillables = '';
-            foreach ($this->commandData->relations as $relation) {
-                $fillables .= ' * @property '.$this->getPHPDocType($relation->type, $relation).PHP_EOL;
-            }
-            foreach ($this->commandData->fields as $field) {
-                if ($field->isFillable) {
-                    $fillables .= ' * @property '.$this->getPHPDocType($field->fieldType).' '.$field->name.PHP_EOL;
-                }
-            }
-            $docsTemplate = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $docsTemplate);
-            $docsTemplate = str_replace('$PHPDOC$', $fillables, $docsTemplate);
-
-            $templateData = str_replace('$DOCS$', $docsTemplate, $templateData);
+        $fillables = '';
+        foreach ($this->commandData->relations as $relation) {
+            $fillables .= ' * @property '.$this->getPHPDocType($relation->type, $relation).PHP_EOL;
         }
+        foreach ($this->commandData->fields as $field) {
+            if ($field->isFillable) {
+                $fillables .= ' * @property '.$this->getPHPDocType($field->fieldType).' '.$field->name.PHP_EOL;
+            }
+        }
+        $docsTemplate = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $docsTemplate);
+        $docsTemplate = str_replace('$PHPDOC$', $fillables, $docsTemplate);
+
+        $templateData = str_replace('$DOCS$', $docsTemplate, $templateData);
 
         return $templateData;
     }
@@ -171,11 +167,6 @@ class ModelGenerator extends BaseGenerator
             case 'hmt':
                 return '\Illuminate\Database\Eloquent\Collection'.' '.Str::camel(Str::plural($relation->inputs[0]));
             default:
-                $fieldData = SwaggerGenerator::getFieldType($db_type);
-                if (!empty($fieldData['fieldType'])) {
-                    return $fieldData['fieldType'];
-                }
-
                 return $db_type;
         }
     }
