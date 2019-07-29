@@ -10,7 +10,7 @@ class Validator extends AbstractValidators
     /**
      * @var string
      */
-    protected $resourceType = '$MODEL_NAME_DASH$';
+    protected $resourceType = '$MODEL_NAME_DASHED$';
 
     /**
      * @var array

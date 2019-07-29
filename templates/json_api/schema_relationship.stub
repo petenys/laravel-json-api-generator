@@ -1,7 +1,7 @@
-/**
-     * @return \Illuminate\Database\Eloquent\Relations\$RELATIONSHIP_CLASS$
-     **/
-    public function $FUNCTION_NAME$()
-    {
-        return $this->$RELATION$($RELATION_MODEL_NAME$::class$INPUT_FIELDS$);
-    }
+
+    [
+				self::SHOW_SELF => false,
+				self::SHOW_RELATED => !isset($includeRelationships['$RELATION_MODEL_NAME$']),
+				self::SHOW_DATA => isset($includeRelationships['$RELATION_MODEL_NAME$']),
+				self::DATA => ( isset($includeRelationships['$RELATION_MODEL_NAME$'])) ? $resource->$FUNCTION_NAME$ : null,
+    ],

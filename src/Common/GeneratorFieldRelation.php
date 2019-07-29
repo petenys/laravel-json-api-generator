@@ -30,16 +30,20 @@ class GeneratorFieldRelation
     public function getRelationFunctionText($builderType="model")
     {
         $singularRelation = (!empty($this->relationName)) ? $this->relationName : Str::camel($this->inputs[0]);
+        $singularResource = Str::kebab($singularRelation);
         $pluralRelation = (!empty($this->relationName)) ? $this->relationName : Str::camel(Str::plural($this->inputs[0]));
+        $pluralResource = Str::kebab($singularRelation);
 
         switch ($this->type) {
             case '1t1':
                 $functionName = $singularRelation;
+                $resourceName = $singularResource;
                 $relation = 'hasOne';
                 $relationClass = 'HasOne';
                 break;
             case '1tm':
                 $functionName = $pluralRelation;
+                $resourceName = $pluralResource;
                 $relation = 'hasMany';
                 $relationClass = 'HasMany';
                 break;
@@ -50,21 +54,25 @@ class GeneratorFieldRelation
                     $singularRelation = Str::camel(str_replace('_id', '', strtolower($this->inputs[1])));
                 }
                 $functionName = $singularRelation;
+                $resourceName = $singularResource;
                 $relation = 'belongsTo';
                 $relationClass = 'BelongsTo';
                 break;
             case 'mtm':
                 $functionName = $pluralRelation;
+                $resourceName = $pluralResource;
                 $relation = 'belongsToMany';
                 $relationClass = 'BelongsToMany';
                 break;
             case 'hmt':
                 $functionName = $pluralRelation;
+                $resourceName = $pluralResource;
                 $relation = 'hasManyThrough';
                 $relationClass = 'HasManyThrough';
                 break;
             default:
                 $functionName = '';
+                $resourceName = '';
                 $relation = '';
                 $relationClass = '';
                 break;
@@ -74,11 +82,14 @@ class GeneratorFieldRelation
             if($builderType=="adapter_relations") {
                 return $this->generateAdapterRelation($functionName, $relation, $relationClass);
             } elseif($builderType=="adapter_relationships") {
+                if($relation=="hasOne" || $relation=="belongsTo") {
+
+                }
                 return $functionName;
             } elseif($builderType=="model") {
                 return $this->generateModelRelation($functionName, $relation, $relationClass);
             } elseif($builderType=="schema") {
-                return $this->generateSchemaRelation($functionName, $relation, $relationClass);
+                return $this->generateSchemaRelation($functionName, $pluralResource);
             }
         }
 
@@ -87,24 +98,11 @@ class GeneratorFieldRelation
 
     private function generateAdapterRelation($functionName, $relation, $relationClass)
     {
-        $inputs = $this->inputs;
-        $modelName = array_shift($inputs);
-
         $template = get_template_stub('json_api.adapter_relationship', 'laravel-json-api-generator');
 
         $template = str_replace('$RELATIONSHIP_CLASS$', $relationClass, $template);
         $template = str_replace('$FUNCTION_NAME$', $functionName, $template);
         $template = str_replace('$RELATION$', $relation, $template);
-        $template = str_replace('$RELATION_MODEL_NAME$', $modelName, $template);
-
-        if (count($inputs) > 0) {
-            $inputFields = implode("', '", $inputs);
-            $inputFields = ", '".$inputFields."'";
-        } else {
-            $inputFields = '';
-        }
-
-        $template = str_replace('$INPUT_FIELDS$', $inputFields, $template);
 
         return $template;
     }
@@ -157,26 +155,15 @@ class GeneratorFieldRelation
         return $template;
     }
 
-    private function generateSchemaRelation($functionName, $relation, $relationClass)
+    private function generateSchemaRelation($functionName, $pluralResource)
     {
         $inputs = $this->inputs;
         $modelName = array_shift($inputs);
 
         $template = get_template_stub('json_api.schema_relationship', 'laravel-json-api-generator');
 
-        $template = str_replace('$RELATIONSHIP_CLASS$', $relationClass, $template);
         $template = str_replace('$FUNCTION_NAME$', $functionName, $template);
-        $template = str_replace('$RELATION$', $relation, $template);
-        $template = str_replace('$RELATION_MODEL_NAME$', $modelName, $template);
-
-        if (count($inputs) > 0) {
-            $inputFields = implode("', '", $inputs);
-            $inputFields = ", '".$inputFields."'";
-        } else {
-            $inputFields = '';
-        }
-
-        $template = str_replace('$INPUT_FIELDS$', $inputFields, $template);
+        $template = str_replace('$RELATION_MODEL_NAME$', $pluralResource, $template);
 
         return $template;
     }

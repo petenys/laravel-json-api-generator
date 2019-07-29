@@ -58,9 +58,27 @@ class SchemaGenerator extends BaseGenerator
     {
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
-        $templateData = str_replace('$GENERATE_DATE$', date('F j, Y, g:i a T'), $templateData);
+        $templateData = str_replace(
+            '$SCHEMA_RELATIONSHIPS$',
+            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateRelations())),
+            $templateData
+        );
 
         return $templateData;
+    }
+
+    private function generateRelations()
+    {
+        $relations = [];
+
+        foreach ($this->commandData->relations as $relation) {
+            $relationText = $relation->getRelationFunctionText("schema_relations");
+            if (!empty($relationText)) {
+                $relations[] = $relationText;
+            }
+        }
+
+        return $relations;
     }
 
     public function rollback()
