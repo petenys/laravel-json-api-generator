@@ -8,7 +8,13 @@ use Illuminate\Support\Collection;
 class Adapter extends EloquentAdapter
 {
 
-    $ADAPTER_RELATIONSHIPS$
+
+    /**
+     * @var array
+     */
+    protected $relationships = [
+    	 $ADAPTER_RELATIONSHIPS$
+		];
 
     /**
      * Adapter constructor.
@@ -25,5 +31,5 @@ class Adapter extends EloquentAdapter
     {
     }
 
-    $RELATIONS$
+    $ADAPTER_RELATIONS$
 }
