@@ -13,8 +13,7 @@ class Adapter extends AbstractAdapter
     /**
      * @var array
      */
-    protected $relationships = [
-    	 $ADAPTER_RELATIONSHIPS$
+    protected $relationships = [$ADAPTER_RELATIONSHIPS$
     ];
 
     protected $guarded = [];
@@ -37,6 +36,5 @@ class Adapter extends AbstractAdapter
     protected function filter($query, Collection $filters)
     {
     }
-
     $ADAPTER_RELATIONS$
 }
