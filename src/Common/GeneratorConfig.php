@@ -171,7 +171,7 @@ class GeneratorConfig
         ).$prefix;
 
         $this->pathJsonApiRoute = config('petenys.laravel_json_api_generator.path.json_api_route', base_path('routes/json-api.php'));
-        $this->pathJsonApiResourceConfig = config('petenys.laravel_json_api_generator.path.json_api_resource_config', base_path('config/json-api-v1.php'));
+        $this->pathJsonApiResourceConfig = config('petenys.laravel_json_api_generator.path.json_api_resource_config', base_path('config/json-api-version.php'));
 
         $this->pathJsonApiTests = config('petenys.laravel_json_api_generator.path.json_api_test', base_path('tests/JsonApis/'));
         $this->pathPolicyTests = config('petenys.laravel_json_api_generator.path.policy_test', base_path('tests/Policies/'));

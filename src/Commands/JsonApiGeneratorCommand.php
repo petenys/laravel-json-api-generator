@@ -47,6 +47,8 @@ class JsonApiGeneratorCommand extends BaseCommand
 
         $this->generateRoute();
 
+        $this->generateResourceConfigGenerator();
+
         $this->generateObserver();
 
         $this->generatePolicy();

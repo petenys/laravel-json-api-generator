@@ -15,7 +15,7 @@ class Adapter extends AbstractAdapter
      */
     protected $relationships = [
     	 $ADAPTER_RELATIONSHIPS$
-		];
+    ];
 
     protected $guarded = [];
 
