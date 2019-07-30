@@ -98,7 +98,7 @@ class GeneratorFieldRelation
 
     private function generateAdapterRelation($functionName, $relation, $relationClass)
     {
-        $template = get_template_stub('json_api.adapter_relationship', 'laravel-json-api-generator');
+        $template = get_template_stub('json_api.adapter_relation', 'laravel-json-api-generator');
 
         $template = str_replace('$RELATIONSHIP_CLASS$', $relationClass, $template);
         $template = str_replace('$FUNCTION_NAME$', $functionName, $template);
@@ -109,24 +109,11 @@ class GeneratorFieldRelation
 
     private function generateAdapterRelationship($functionName, $relation, $relationClass)
     {
-        $inputs = $this->inputs;
-        $modelName = array_shift($inputs);
-
         $template = get_template_stub('json_api.adapter_relationship', 'laravel-json-api-generator');
 
         $template = str_replace('$RELATIONSHIP_CLASS$', $relationClass, $template);
         $template = str_replace('$FUNCTION_NAME$', $functionName, $template);
         $template = str_replace('$RELATION$', $relation, $template);
-        $template = str_replace('$RELATION_MODEL_NAME$', $modelName, $template);
-
-        if (count($inputs) > 0) {
-            $inputFields = implode("', '", $inputs);
-            $inputFields = ", '".$inputFields."'";
-        } else {
-            $inputFields = '';
-        }
-
-        $template = str_replace('$INPUT_FIELDS$', $inputFields, $template);
 
         return $template;
     }
