@@ -39,10 +39,10 @@ class ResourceConfigGenerator extends BaseGenerator
         } else {
             if(Str::contains($this->configContents, "/* End Generated Content */")) {
                 $this->commandData->commandComment("Has generated content tag");
-                $this->configContents = Str::replaceLast($this->configContents, "/* End Generated Content */", $this->configTemplate);
+                $this->configContents = Str::replaceLast("/* End Generated Content */", $this->configTemplate, $this->configContents);
             } elseif(Str::contains($this->configContents, "'resources' => [")) {
                 $this->commandData->commandComment("Has resources array");
-                $this->configContents = Str::replaceLast($this->configContents, "'resources' => [", "'resources' => [\n\t\t/* Start Generated Content */".$this->configTemplate);
+                $this->configContents = Str::replaceLast("'resources' => [", "'resources' => [\n\t\t/* Start Generated Content */".$this->configTemplate, $this->configContents);
             }
 
             file_put_contents($this->path, $this->configContents);
