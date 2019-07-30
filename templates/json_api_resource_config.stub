@@ -1,2 +1,2 @@
-'$MODEL_NAME_PLURAL_DASHED$' => $NAMESPACE_MODEL$\$MODEL_NAME$,
+'$MODEL_NAME_PLURAL_DASHED$' => $NAMESPACE_MODEL$\$MODEL_NAME$::class,
         /* End Generated Content */
