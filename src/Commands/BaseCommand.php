@@ -6,6 +6,7 @@ use PeteNys\Generator\Generators\JsonApi\AdapterGenerator;
 use PeteNys\Generator\Generators\JsonApi\SchemaGenerator;
 use PeteNys\Generator\Generators\JsonApi\ValidatorGenerator;
 use PeteNys\Generator\Generators\Observers\ObserverGenerator;
+use PeteNys\Generator\Generators\Observers\ObserverProviderGenerator;
 use PeteNys\Generator\Generators\Policies\PolicyGenerator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -122,6 +123,8 @@ class BaseCommand extends Command
         if (!$this->isInclude('observer')) {
             $observerGenerator = new ObserverGenerator($this->commandData);
             $observerGenerator->generate();
+            $observerProviderGenerator = new ObserverProviderGenerator($this->commandData);
+            $observerProviderGenerator->generate();
         }
     }
 
