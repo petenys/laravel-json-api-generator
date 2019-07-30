@@ -34,7 +34,7 @@ class ObserverProviderGenerator extends BaseGenerator
     public function generate()
     {
         if(Str::contains($this->currentContents, $this->commandData->config->mName."::")) {
-            $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api observer provider already present.');
+            $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api observer provider already present.');
         } else {
             if(Str::contains($this->currentContents, "/* End Generated Content */")) {
                 Str::replaceLast($this->currentContents, "/* End Generated Content */", $this->templateContents);
@@ -44,7 +44,7 @@ class ObserverProviderGenerator extends BaseGenerator
 
             file_put_contents($this->path, $this->currentContents);
 
-            $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api observer provider added.');
+            $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api observer provider added.');
         }
     }
 

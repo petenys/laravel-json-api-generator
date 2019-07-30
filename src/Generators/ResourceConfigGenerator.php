@@ -34,8 +34,8 @@ class ResourceConfigGenerator extends BaseGenerator
 
     public function generate()
     {
-        if(Str::contains($this->configContents, "'".$this->commandData->config->mCamelPlural."' =>")) {
-            $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api resource already present.');
+        if(Str::contains($this->configContents, "'".$this->commandData->config->mDashedPlural."' =>")) {
+            $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api resource already present.');
         } else {
             if(Str::contains($this->configContents, "/* End Generated Content */")) {
                 $this->commandData->commandComment("Has generated content tag");
@@ -47,7 +47,7 @@ class ResourceConfigGenerator extends BaseGenerator
 
             file_put_contents($this->path, $this->configContents);
 
-            $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api resource added.');
+            $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api resource added.');
         }
     }
 

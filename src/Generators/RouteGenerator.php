@@ -51,7 +51,7 @@ class RouteGenerator extends BaseGenerator
     public function generate()
     {
         if(Str::contains($this->routeContents, "api->resource('".$this->commandData->config->mDashedPlural."'")) {
-            $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api route already present.');
+            $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api route already present.');
         } else {
             if(Str::contains($this->routeContents, "/* End Generated Content */")) {
                 Str::replaceLast($this->routeContents, "/* End Generated Content */", $this->routeTemplate);
@@ -61,7 +61,7 @@ class RouteGenerator extends BaseGenerator
 
             file_put_contents($this->path, $this->routeContents);
 
-            $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api route added.');
+            $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api route added.');
         }
     }
 
