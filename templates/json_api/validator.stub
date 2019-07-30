@@ -8,19 +8,22 @@ class Validator extends AbstractValidators
 {
 
     /**
-     * @var string
+     * The include paths a client is allowed to request.
+     *
+     * @var string[]|null
+     *      the allowed paths, an empty array for none allowed, or null to allow all paths.
      */
-    protected $resourceType = '$MODEL_NAME_PLURAL_DASHED$';
+    protected $allowedIncludePaths = [
+    		'id',
+    ];
 
     /**
-     * @var array
+     * The sort field names a client is allowed send.
+     *
+     * @var string[]|null
+     *      the allowed fields, an empty array for none allowed, or null to allow all fields.
      */
-    protected $allowedFilteringParameters = [
-        'id',
-    ];
-
-    protected $allowedIncludePaths = [
-    ];
+    protected $allowedSortParameters = [];
 
     /**
      * Get resource validation rules.
@@ -31,21 +34,29 @@ class Validator extends AbstractValidators
      */
     protected function rules($record = null): array
     {
-        $required = $record ? 'sometimes|required' : 'required';
         return [
         ];
     }
 
+    /**
+     * Get query parameter validation rules.
+     *
+     * @return array
+     */
     protected function queryRules(): array
     {
-        return [];
+        return [
+        ];
     }
 
     /**
-     * @inheritDoc
+     * add relationships that need to be included but may not have been passed in
+     * @param \$NAMESPACE_MODEL$\$MODEL_NAME$ $record
+     * @return iterable
      */
-    protected function relationshipRules($record = null, string $field): array
+    protected function existingRelationships($record): iterable
     {
-        return [];
+        return [
+        ];
     }
 }

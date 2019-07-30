@@ -41,9 +41,9 @@ class RouteGenerator extends BaseGenerator
 
     public function generate()
     {
-        $routeContents = Str::before($this->routeContents, "/* Route Generator Routes */") .
-            "\n\n".$this->routeTemplate ."\n\n/* Route Generator Routes */".
-            Str::after($this->routeContents, "/* Route Generator Routes */");
+        $routeContents = Str::before($this->routeContents, "/* End Generated Routes */") .
+            "\n\n".$this->routeTemplate ."\n\n/* End Generated Routes */".
+            Str::after($this->routeContents, "/* End Generated Routes */");
 
         file_put_contents($this->path, $routeContents);
 

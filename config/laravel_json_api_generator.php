@@ -27,6 +27,8 @@ return [
 
         'json_api_route'        => base_path('routes/json-api.php'),
 
+        'json_api_resource_config'        => base_path('config/json-api-version.php'),
+
         'test_trait'        => base_path('tests/Traits/'),
 
         'policy_test'   => base_path('tests/Policies/'),

@@ -1,13 +1,14 @@
 <?php
 namespace $JSON_API_MODEL_NAMESPACE$;
 
-use $NAMESPACE_MODEL$\$MODEL_NAME$ as Model;
-use App\JsonApi\EloquentAdapter;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
+use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
-class Adapter extends EloquentAdapter
+class Adapter extends AbstractAdapter
 {
-
 
     /**
      * @var array
@@ -16,16 +17,22 @@ class Adapter extends EloquentAdapter
     	 $ADAPTER_RELATIONSHIPS$
 		];
 
+    protected $guarded = [];
+
     /**
      * Adapter constructor.
+     *
+     * @param StandardStrategy $paging
      */
-    public function __construct()
+    public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new Model());
+        parent::__construct(new $MODEL_NAME$(), $paging);
     }
 
     /**
-     * @inheritDoc
+     * @param Builder $query
+     * @param Collection $filters
+     * @return void
      */
     protected function filter($query, Collection $filters)
     {
