@@ -37,10 +37,10 @@ class ResourceConfigGenerator extends BaseGenerator
         if(Str::contains($this->configContents, "'".$this->commandData->config->mCamelPlural."' =>")) {
             $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api resource already present.');
         } else {
-            if(Str::contains($this->configContents, "/* End Generated Resources */")) {
-                Str::replaceLast($this->configContents, "/* End Generated Resources */", $this->configTemplate);
+            if(Str::contains($this->configContents, "/* End Generated Content */")) {
+                Str::replaceLast($this->configContents, "/* End Generated Content */", $this->configTemplate);
             } elseif(Str::contains($this->configContents, "'resources' => [")) {
-                Str::replaceLast($this->configContents, "'resources' => [", "'resources' => [\n\t\t/* Start Generated Resources */".$this->configTemplate);
+                Str::replaceLast($this->configContents, "'resources' => [", "'resources' => [\n\t\t/* Start Generated Content */".$this->configTemplate);
             }
 
             file_put_contents($this->path, $this->configContents);

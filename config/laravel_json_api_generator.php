@@ -21,6 +21,8 @@ return [
 
         'observer'        => app_path('Observers/'),
 
+        'observer_provider'        => app_path('Providers/ObserverServiceProvider.php'),
+
         'policy'        => app_path('Policies/'),
 
         'repository'        => app_path('Repositories/'),

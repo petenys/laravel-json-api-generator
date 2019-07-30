@@ -53,10 +53,10 @@ class RouteGenerator extends BaseGenerator
         if(Str::contains($this->routeContents, "api->resource('".$this->commandData->config->mDashedPlural."'")) {
             $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api route already present.');
         } else {
-            if(Str::contains($this->routeContents, "/* End Generated Routes */")) {
-                Str::replaceLast($this->routeContents, "/* End Generated Routes */", $this->routeTemplate);
+            if(Str::contains($this->routeContents, "/* End Generated Content */")) {
+                Str::replaceLast($this->routeContents, "/* End Generated Content */", $this->routeTemplate);
             } else {
-                $this->routeContents .= "\n\t/* Start Generated Routes */".$this->routeTemplate;
+                $this->routeContents .= "\n\t/* Start Generated Content */".$this->routeTemplate;
             }
 
             file_put_contents($this->path, $this->routeContents);

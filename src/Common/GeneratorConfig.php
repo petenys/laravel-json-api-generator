@@ -29,6 +29,7 @@ class GeneratorConfig
     public $pathJsonApi;
     public $pathModel;
     public $pathObserver;
+    public $pathObserverProvider;
     public $pathPolicy;
     public $pathRepository;
     public $pathJsonApiRoute;
@@ -162,6 +163,7 @@ class GeneratorConfig
         $this->pathModel = config('petenys.laravel_json_api_generator.path.model', app_path('Models/')).$prefix;
 
         $this->pathObserver = config('petenys.laravel_json_api_generator.path.observer', app_path('Observers/')).$prefix;
+        $this->pathObserverProvider = config('petenys.laravel_json_api_generator.path.observer_provider', app_path('Providers/ObserverServiceProvider.php'));
 
         $this->pathPolicy = config('petenys.laravel_json_api_generator.path.policy', app_path('Policies/')).$prefix;
 

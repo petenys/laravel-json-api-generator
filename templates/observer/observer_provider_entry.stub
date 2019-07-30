@@ -1,0 +1,2 @@
+Models\$MODEL_NAME$::observe(Observers\$MODEL_NAME$Observer::class);
+        /* End Generated Content */
