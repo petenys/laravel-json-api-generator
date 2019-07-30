@@ -4,6 +4,7 @@ namespace PeteNys\Generator\Generators\Observers;
 
 use Illuminate\Support\Str;
 use PeteNys\Generator\Common\CommandData;
+use PeteNys\Generator\Generators\BaseGenerator;
 
 class ObserverProviderGenerator extends BaseGenerator
 {
