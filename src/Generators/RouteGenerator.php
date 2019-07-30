@@ -28,13 +28,7 @@ class RouteGenerator extends BaseGenerator
 
         $routeTemplate = get_template_stub('json_api_route', 'laravel-json-api-generator');
 
-        if($this->commandData->hasOneRouteRelations) {
-            $routeTemplate = str_replace('$MODEL_HAS_ONE_RELATION$',
-                implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
-                    $this->commandData->hasOneRouteRelations)), $routeTemplate);
-        }
-
-        $hasOneStr = $this->commandData->hasManyRouteRelations ?
+        $hasOneStr = $this->commandData->hasOneRouteRelations ?
             implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
                 $this->commandData->hasOneRouteRelations)) :
             "";
