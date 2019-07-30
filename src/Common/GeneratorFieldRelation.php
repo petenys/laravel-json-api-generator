@@ -83,6 +83,7 @@ class GeneratorFieldRelation
                 return $this->generateAdapterRelation($functionName, $relation, $relationClass);
             } elseif($builderType=="adapter_relationships") {
                 return $resourceName;
+                //return $this->generateAdapterRelationship($resourceName);
             } elseif($builderType=="model") {
                 return $this->generateModelRelation($functionName, $relation, $relationClass);
             } elseif($builderType=="schema") {
@@ -104,13 +105,11 @@ class GeneratorFieldRelation
         return $template;
     }
 
-    private function generateAdapterRelationship($functionName, $relation, $relationClass)
+    private function generateAdapterRelationship($resourceName)
     {
         $template = get_template_stub('json_api.adapter_relationship', 'laravel-json-api-generator');
 
-        $template = str_replace('$RELATIONSHIP_CLASS$', $relationClass, $template);
-        $template = str_replace('$FUNCTION_NAME$', $functionName, $template);
-        $template = str_replace('$RELATION$', $relation, $template);
+        $template = str_replace('$RELATIONSHIP_DASHED$', $resourceName, $template);
 
         return $template;
     }

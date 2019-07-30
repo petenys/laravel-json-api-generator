@@ -58,21 +58,18 @@ class AdapterGenerator extends BaseGenerator
     {
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
-        $relationships = [];
+        $relationships = "";
         foreach ($this->commandData->relations as $relation) {
             $relationText = $relation->getRelationFunctionText("adapter_relationships");
             if (!empty($relationText)) {
-                $relationships[] = $relationText;
+                $template = get_template_stub('json_api.adapter_relationship', 'laravel-json-api-generator');
+                $relationships .= str_replace('$RELATIONSHIP_DASHED$', $relationText, $template);
             }
         }
 
-        $relationshipsStr = $relationships ?
-            implode('\n\t\t, ', array_map(function($val){return sprintf("'%s'", $val);},
-                $relationships)) :
-            "";
         $templateData = str_replace(
             '$ADAPTER_RELATIONSHIPS$',
-            $relationshipsStr,
+            $relationships,
             $templateData
         );
 
@@ -92,7 +89,8 @@ class AdapterGenerator extends BaseGenerator
         foreach ($this->commandData->relations as $relation) {
             $relationText = $relation->getRelationFunctionText("adapter_relationships");
             if (!empty($relationText)) {
-                $relations[] = $relationText;
+                $template = get_template_stub('json_api.adapter_relationship', 'laravel-json-api-generator');
+                $relations .= str_replace('$RELATIONSHIP_DASHED$', $relationText, $template);
             }
         }
 
