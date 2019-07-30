@@ -32,7 +32,7 @@ class GeneratorFieldRelation
         $singularRelation = (!empty($this->relationName)) ? $this->relationName : Str::camel($this->inputs[0]);
         $singularResource = Str::kebab($singularRelation);
         $pluralRelation = (!empty($this->relationName)) ? $this->relationName : Str::camel(Str::plural($this->inputs[0]));
-        $pluralResource = Str::kebab($singularRelation);
+        $pluralResource = Str::kebab($pluralRelation);
 
         switch ($this->type) {
             case '1t1':
