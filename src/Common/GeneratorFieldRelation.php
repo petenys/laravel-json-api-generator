@@ -82,10 +82,7 @@ class GeneratorFieldRelation
             if($builderType=="adapter_relations") {
                 return $this->generateAdapterRelation($functionName, $relation, $relationClass);
             } elseif($builderType=="adapter_relationships") {
-                if($relation=="hasOne" || $relation=="belongsTo") {
-
-                }
-                return $functionName;
+                return $resourceName;
             } elseif($builderType=="model") {
                 return $this->generateModelRelation($functionName, $relation, $relationClass);
             } elseif($builderType=="schema") {

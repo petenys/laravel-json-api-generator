@@ -58,9 +58,21 @@ class AdapterGenerator extends BaseGenerator
     {
         $templateData = fill_template_stub($this->commandData->dynamicVars, $templateData);
 
+        $relationships = [];
+        foreach ($this->commandData->relations as $relation) {
+            $relationText = $relation->getRelationFunctionText("adapter_relationships");
+            if (!empty($relationText)) {
+                $relationships[] = $relationText;
+            }
+        }
+
+        $relationshipsStr = $relationships ?
+            implode('\n\t\t, ', array_map(function($val){return sprintf("'%s'", $val);},
+                $relationships)) :
+            "";
         $templateData = str_replace(
             '$ADAPTER_RELATIONSHIPS$',
-            fill_template_stub($this->commandData->dynamicVars, implode(PHP_EOL.petenys_nl_tab(1, 1), $this->generateRelationships())),
+            $relationshipsStr,
             $templateData
         );
 
@@ -75,7 +87,7 @@ class AdapterGenerator extends BaseGenerator
 
     private function generateRelationships()
     {
-        $relations = [];
+        $relations = "";
 
         foreach ($this->commandData->relations as $relation) {
             $relationText = $relation->getRelationFunctionText("adapter_relationships");

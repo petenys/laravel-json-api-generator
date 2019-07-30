@@ -1,6 +1,4 @@
-/**
-     * @return \Illuminate\Database\Eloquent\Relations\$RELATIONSHIP_CLASS$
-     **/
+
     public function $FUNCTION_NAME$()
     {
         return $this->$RELATION$();
