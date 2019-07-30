@@ -28,13 +28,22 @@ class RouteGenerator extends BaseGenerator
 
         $routeTemplate = get_template_stub('json_api_route', 'laravel-json-api-generator');
 
-        $routeTemplate = str_replace('$MODEL_HAS_ONE_RELATION$',
-            implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
-            $this->commandData->hasOneRouteRelations)), $routeTemplate);
+        if($this->commandData->hasOneRouteRelations) {
+            $routeTemplate = str_replace('$MODEL_HAS_ONE_RELATION$',
+                implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
+                    $this->commandData->hasOneRouteRelations)), $routeTemplate);
+        }
 
-        $routeTemplate = str_replace('$MODEL_HAS_MANY_RELATION$',
+        $hasOneStr = $this->commandData->hasManyRouteRelations ?
             implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
-                $this->commandData->hasManyRouteRelations)), $routeTemplate);
+                $this->commandData->hasOneRouteRelations)) :
+            "";
+        $routeTemplate = str_replace('$MODEL_HAS_ONE_RELATION$', $hasOneStr, $routeTemplate);
+        $hasManyStr = $this->commandData->hasManyRouteRelations ?
+            implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
+                $this->commandData->hasManyRouteRelations)) :
+            "";
+        $routeTemplate = str_replace('$MODEL_HAS_MANY_RELATION$', $hasManyStr, $routeTemplate);
 
         $this->routeTemplate = fill_template_stub($this->commandData->dynamicVars, $routeTemplate);
     }
