@@ -54,7 +54,7 @@ class RouteGenerator extends BaseGenerator
             $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api route already present.');
         } else {
             if(Str::contains($this->routeContents, "/* End Generated Content */")) {
-                Str::replaceLast($this->routeContents, "/* End Generated Content */", $this->routeTemplate);
+                $this->routeContents = Str::replaceLast($this->routeContents, "/* End Generated Content */", $this->routeTemplate);
             } else {
                 $this->routeContents .= "\n\t/* Start Generated Content */".$this->routeTemplate;
             }

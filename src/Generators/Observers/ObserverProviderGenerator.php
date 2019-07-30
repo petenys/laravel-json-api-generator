@@ -37,9 +37,9 @@ class ObserverProviderGenerator extends BaseGenerator
             $this->commandData->commandComment("\n".$this->commandData->config->mName.' json api observer provider already present.');
         } else {
             if(Str::contains($this->currentContents, "/* End Generated Content */")) {
-                Str::replaceLast($this->currentContents, "/* End Generated Content */", $this->templateContents);
+                $this->currentContents = Str::replaceLast($this->currentContents, "/* End Generated Content */", $this->templateContents);
             } elseif(Str::contains($this->currentContents, "public function boot()\n\t{")) {
-                Str::replaceLast($this->currentContents, "public function boot()\n\t{", "public function boot()\n\t{\n\t\t/* Start Generated Content */".$this->templateContents);
+                $this->currentContents = Str::replaceLast($this->currentContents, "public function boot()\n\t{", "public function boot()\n\t{\n\t\t/* Start Generated Content */".$this->templateContents);
             }
 
             file_put_contents($this->path, $this->currentContents);
