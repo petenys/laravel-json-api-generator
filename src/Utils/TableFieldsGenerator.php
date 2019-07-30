@@ -53,6 +53,12 @@ class TableFieldsGenerator
     /** @var GeneratorFieldRelation[] */
     public $relations;
 
+    /** @var GeneratorFieldRelation[] */
+    public $hasOneRouteRelations;
+
+    /** @var GeneratorFieldRelation[] */
+    public $hasManyRouteRelations;
+
     /** @var array */
     public $ignoredFields;
 
@@ -368,6 +374,7 @@ class TableFieldsGenerator
                     if ($isOneToOne) {
                         $modelName = get_model_name_from_table_name($tableName);
                         $this->relations[] = GeneratorFieldRelation::parseRelation('1t1,'.$modelName);
+                        $this->hasOneRouteRelations[] = Str::kebab($modelName);
                         continue;
                     }
 
@@ -376,6 +383,7 @@ class TableFieldsGenerator
                     if ($isOneToMany) {
                         $modelName = get_model_name_from_table_name($tableName);
                         $this->relations[] = GeneratorFieldRelation::parseRelation('1tm,'.$modelName);
+                        $this->hasManyRouteRelations[] = Str::kebab(Str::plural($modelName));
                         continue;
                     }
                 }

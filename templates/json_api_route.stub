@@ -1,13 +1,6 @@
-<?php
-
-/*
-|--------------------------------------------------------------------------
-| JSON API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where all JSON API routes are defined.
-|
-*/
-
-
-
+		/* Start $MODEL_NAME$ Route */
+		$api->resource('$MODEL_NAME_PLURAL_DASHED$', [
+        'has-one' => [$MODEL_HAS_ONE_RELATION$],
+        'has-many' => [$MODEL_HAS_MANY_RELATION$],
+    ]);
+    /* End $MODEL_NAME$ Route */

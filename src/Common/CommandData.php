@@ -25,6 +25,12 @@ class CommandData
     /** @var GeneratorFieldRelation[] */
     public $relations = [];
 
+    /** @var GeneratorFieldRelation[] */
+    public $hasOneRouteRelations;
+
+    /** @var GeneratorFieldRelation[] */
+    public $hasManyRouteRelations;
+
     /** @var Command */
     public $commandObj;
 
@@ -275,5 +281,7 @@ class CommandData
 
         $this->fields = $tableFieldsGenerator->fields;
         $this->relations = $tableFieldsGenerator->relations;
+        $this->hasOneRouteRelations = $tableFieldsGenerator->hasOneRouteRelations;
+        $this->hasManyRouteRelations = $tableFieldsGenerator->hasManyRouteRelations;
     }
 }

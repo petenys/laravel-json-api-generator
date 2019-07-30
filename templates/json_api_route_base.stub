@@ -1,0 +1,8 @@
+<?php
+use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
+use CloudCreativity\LaravelJsonApi\Routing\RouteRegistrar as Api;
+
+JsonApi::register('v1', ['namespace' => 'Json'], function (Api $api) {
+
+    /* Generated Routes */
+});

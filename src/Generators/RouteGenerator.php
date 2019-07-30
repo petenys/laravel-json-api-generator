@@ -28,22 +28,35 @@ class RouteGenerator extends BaseGenerator
 
         $routeTemplate = get_template_stub('json_api_route', 'laravel-json-api-generator');
 
+        $routeTemplate = str_replace('$MODEL_HAS_ONE_RELATION$',
+            implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
+            $this->commandData->hasOneRouteRelations)), $routeTemplate);
+
+        $routeTemplate = str_replace('$MODEL_HAS_MANY_RELATION$',
+            implode(', ', array_map(function($val){return sprintf("'%s'", $val);},
+                $this->commandData->hasManyRouteRelations)), $routeTemplate);
+
         $this->routeTemplate = fill_template_stub($this->commandData->dynamicVars, $routeTemplate);
     }
 
     public function generate()
     {
-        $this->routeContents .= "\n\n".$this->routeTemplate;
+        $routeContents = Str::before($this->routeContents, "/* Route Generator Routes */") .
+            "\n\n".$this->routeTemplate ."\n\n/* Route Generator Routes */".
+            Str::after($this->routeContents, "/* Route Generator Routes */");
 
-        file_put_contents($this->path, $this->routeContents);
+        file_put_contents($this->path, $routeContents);
 
         $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' json api route added.');
     }
 
     public function rollback()
     {
-        if (Str::contains($this->routeContents, $this->routeTemplate)) {
-            $this->routeContents = str_replace($this->routeTemplate, '', $this->routeContents);
+        if (Str::contains($this->routeContents, "/* Start ".$this->commandData->config->mName." Route */")) {
+
+            $this->routeContents = Str::before($this->routeContents, "/* Start ".$this->commandData->config->mName." Route */") .
+                Str::after($this->routeContents, "/* End ".$this->commandData->config->mName." Route */")
+            ;
             file_put_contents($this->path, $this->routeContents);
             $this->commandData->commandComment('json api route deleted');
         }
